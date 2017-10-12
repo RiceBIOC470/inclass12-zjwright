@@ -39,11 +39,9 @@ imshow(img2_mask_final, [100 1000])
 % each cell nucleus in each of the two channels. Make a plot where each data point 
 % represents one nucleus and these two values are plotted against each other
 figure
-img2show=cat(3, imadjust(img1), imadjust(img2_mask_final), zeros(size(img1)));
+img2show=cat(3, imadjust(img1), imadjust(img2_final), zeros(size(img1)));
 imshow(img2show)
 
-cell_info_1 = regionprops(img2_mask_final,img1,'MeanIntensity','MaxIntensity','PixelValues','Area','Centroid');
-cell_info_2 = regionprops(img2_mask_final,img2,'MeanIntensity','MaxIntensity','PixelValues','Area','Centroid');
-img1_intensities=[cell_info_1.MeanIntensity];
-img2_intensities=[cell_info_2.MeanIntensity];
-plot(img1_intensities,img2_intensities)
+cell_info_1 = regionprops(img2_mask_final,img1,'MeanIntensity','PixelValues','Area','Centroid');
+cell_info_2 = regionprops(img2_mask_final,img2,'MeanIntensity','PixelValues','Area','Centroid');
+img2_intensities=cell_info_2.MeanIntensity
